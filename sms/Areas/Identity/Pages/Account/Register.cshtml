@@ -1,0 +1,59 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+
+<div class="signup-form">
+    <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <div class="form-group">
+            <div class="row">
+                <div class="col">
+                    <select asp-for="Input.ParentId" asp-items="ViewBag.ParentId" id="name" class="form-control">
+                        <option disabled="disabled" selected="selected">--Please Select Branch--</option>
+                    </select>
+                </div>
+
+                <div class="col">
+                    @*<label asp-for="Input.FirstName"></label>*@
+                    <input asp-for="Input.FirstName" class="form-control" placeholder="First Name" />
+                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @*<label asp-for="Input.LastName"></label>*@
+            <input asp-for="Input.LastName" class="form-control" placeholder="Last Name" />
+            <span asp-validation-for="Input.LastName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            @*<label asp-for="Input.Email"></label>*@
+            <input asp-for="Input.Email" class="form-control" placeholder="Email" />
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+         </div>  
+         <div class="form-group">
+                <div class="form-group">
+                    @*<label asp-for="Input.Password"></label>*@
+                    <input asp-for="Input.Password" class="form-control" placeholder="Password" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+         </div>
+         <div class="form-group">
+             <div class="form-group">
+                 @*<label asp-for="Input.ConfirmPassword"></label>*@
+                 <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+             </div>
+         </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Create Account</button>
+            </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

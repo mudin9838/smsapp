@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - sms</title>
+    <link rel="stylesheet" href="~/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/ej2/material.css" />
+    <script src="~/js/ej2/ej2.min.js"></script>
+</head>
+<body>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <partial name="_Header" />
+        <partial name="_SideBar" />
+
+        <!--@*<partial name="_LoginPartial" />*@-->
+     }
+        <div id="maintext" class="main-content">
+            <div>
+                @RenderBody()
+            </div>
+        </div>
+    
+ 
+
+
+            <script src="~/lib/jquery/dist/jquery.min.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    sidebarInstance = document.getElementById('sidebar-menu').ej2_instances[0];
+
+                    document.getElementById('hamburger').onclick = function () {
+                        sidebarInstance.toggle();
+                    };
+                });
+
+
+            </script>
+            <ejs-scripts></ejs-scripts>
+            @await RenderSectionAsync("Scripts", required: false)
+    </body>
+</html>

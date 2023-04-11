@@ -1,0 +1,333 @@
+﻿/* header-section styles */
+#header.header-section,
+#header .search-icon {
+    height: 50px;
+}
+
+#hamburger.e-icons {
+    font-size: 24px;
+    float: left;
+    line-height: 50px;
+    padding-top: 8px;
+    margin-top: -0.5%;
+    cursor: pointer;
+}
+}{
+    font-size: 24px;
+    float: left;
+    line-height: 50px;
+    padding-top: 8px;
+}
+
+#header .right-header {
+    height: 35px;
+    padding: 7px;
+    float: right;
+}
+
+#header .list {
+    list-style: none;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 35px;
+}
+
+#header .header-list {
+    padding-left: 15px;
+    margin: 0;
+}
+
+@media(max-width:500px) {
+    #header .right-header.list.support,
+    #header .right-header.list.tour {
+        display: none;
+    }
+}
+
+/* text input styles */
+#header .search-icon {
+    float: left;
+    padding-left: 15px;
+    border: 0px solid #33383e !important;
+    background-color: #33383e;
+    cursor: text;
+    width: 5em;
+}
+
+    #header .search-icon:focus {
+        outline: none;
+        cursor: default;
+    }
+
+/* end of text input styles */
+/* end of header-section styles */
+
+/* content area styles */
+#maintext.main-content {
+    height: 100vh;
+    z-index: 1000;
+}
+
+#maintext .content {
+    margin-top: 230px;
+    text-align: center;
+    font-size: 32px;
+    color: #1784c7;
+}
+
+/* end of content area styles */
+
+/* menu styles */
+/* horizontal-menu styles */
+#header .header-list .horizontal-menu .e-menu-item {
+    height: 35px;
+    vertical-align: middle;
+    font-size: 16px;
+    line-height: 35px;
+}
+
+#header .e-menu-item .e-caret {
+    line-height: 35px;
+}
+
+/* end of horizontal-menu styles */
+/* vertical-menu styles */
+
+#sidebar-menu .e-menu-wrapper ul .e-menu-item.e-menu-caret-icon {
+    width: 220px;
+}
+
+#sidebar-menu .e-menu-wrapper ul .e-menu-item:hover, .e-menu-item.e-focused:hover {
+    /*background-color: #3e454c !important;*/
+}
+
+/* end of vertical-menu styles */
+/* end of menu styles */
+
+/* Sidebar styles */
+/* docksidebar styles */
+.dock-menu .e-menu-wrapper ul .e-menu-item .e-caret,
+#header .search-icon,
+#sidebar-menu .action-btn,
+#header .e-menu-item .e-caret,
+.dock-menu .e-menu-wrapper ul .e-menu-item {
+    color: black !important;
+}
+
+.dock-menu.e-close .e-menu-wrapper ul .e-menu-item {
+    width: 50px;
+}
+
+.dock-menu.e-close ul .e-menu-item.e-menu-caret-icon {
+    padding-right: 12px;
+}
+
+#sidebar-menu.e-dock.e-close .e-menu-wrapper ul .e-menu-item .e-caret,
+#sidebar-menu.e-dock.e-close .main-menu-header,
+#sidebar-menu.e-dock.e-close .action-btn {
+    display: none;
+}
+
+#sidebar-menu.e-dock.e-close .e-menu-wrapper ul .e-menu-item.e-menu-caret-icon,
+#sidebar-menu.e-dock.e-close .e-menu-wrapper ul.e-vertical {
+    min-width: 0;
+    width: 50px !important;
+}
+
+#sidebar-menu.e-dock.e-close .e-menu-wrapper ul.e-menu {
+    font-size: 0;
+}
+
+#sidebar-menu.e-dock.e-close .e-menu-item .e-menu-icon {
+    font-size: 20px;
+    padding: 0;
+}
+
+#sidebar-menu,
+#sidebar-menu ul,
+#header ul,
+.dock-menu .e-menu-wrapper,
+.dock-menu.e-menu-wrapper,
+.dock-menu.e-menu-wrapper ul > *,
+.dock-menu .e-menu-wrapper ul > * {
+    /*    background-color: #fff !important;
+*/ color: #fff !important;
+    overflow: hidden;
+}
+
+    /* end of docksidebar styles */
+    /*end of  Sidebar styles */
+
+    /*main-menu-header  styles */
+    #sidebar-menu .main-menu-header {
+        padding: 4px 0px 0px 18px;
+        color: #656a70;
+    }
+
+    /*end of main-menu-header  styles */
+
+    /*button styles */
+    #sidebar-menu .action-btn {
+        margin-left: 16px;
+        width: 165px;
+        height: 30px;
+        font-size: 13px;
+        border-radius: 5px;
+    }
+
+    #sidebar-menu .action-btn {
+        background-color: #1784c7;
+    }
+/* custom code start */
+/*end of button styles */
+
+.col-md-12, body {
+    padding: 0;
+}
+
+#sidebar-menu {
+    margin-left: -1px;
+}
+/*body styles */
+/* custom code end */
+/*end of body styles */
+
+/*icon styles */
+@font-face {
+    font-family: 'fontello';
+}
+
+#sidebar-menu .icon-up-hand:before {
+    content: '\e801';
+}
+
+#sidebar-menu .icon-bell-alt:before {
+    content: '\e802';
+}
+
+#sidebar-menu .icon-user:before {
+    content: '\e803';
+}
+
+#sidebar-menu .icon-picture:before {
+    content: '\e804';
+}
+
+#sidebar-menu .icon-comment-alt:before {
+    content: '\e805';
+}
+
+#sidebar-menu .icon-tag:before {
+    content: '\e806';
+}
+
+#sidebar-menu .icon-comment-inv-alt2:before {
+    content: '\e807';
+}
+
+#sidebar-menu .icon-eye:before {
+    content: '\e808';
+}
+
+#sidebar-menu .icon-globe:before {
+    content: '\e809';
+}
+
+#sidebar-menu .icon-bookmark-empty:before {
+    content: '\e810';
+}
+
+#sidebar-menu .icon-bookmark:before {
+    content: '\e811';
+}
+
+#header .icon-menu:before {
+    content: '\e812';
+}
+
+#sidebar-menu .icon,
+#header #hamburger.icon-menu {
+    font-family: 'fontello';
+}
+
+#sidebar-menu .e-menu-icon::before {
+    color: #656a70;
+}
+
+#header.header-section, #header .search-icon {
+    height: 50px;
+    background: black;
+}
+
+/*Right-messages*/
+
+.right-messages {
+    margin-left: -5%;
+}
+
+
+/*icon styles */
+.fa-envelope {
+    margin-left: -600%;
+}
+
+.fa-bell {
+    margin-left: -600%;
+}
+/*Navbar*/
+ul.head {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+.nav-item {
+    margin-top: -1.4%;
+}
+
+#logout-btn {
+    margin-top: 7%;
+}
+
+
+/*Dashboard*/
+#parent {
+    color: #4d80f3;
+}
+
+#child {
+    color: #fb6d9d;
+}
+#department {
+    color: #81c868;
+}
+#service {
+    color: #34d3eb;
+}
+.gradient-form {
+    background-color:black;
+}
+.gradient-custom-2 {
+     fallback for old browsers 
+    background: #fccb90;
+     Chrome 10-25, Safari 5.1-6 
+    background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+     W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ 
+    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+}
+
+@media (min-width: 768px) {
+    .gradient-form {
+        height: 100vh !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .gradient-custom-2 {
+        border-top-right-radius: .3rem;
+        border-bottom-right-radius: .3rem;
+    }
+}
+
+

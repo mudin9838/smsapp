@@ -1,0 +1,139 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+
+    List<Object>
+    mainMenuItems = new List<Object>
+        ();
+    mainMenuItems.Add(new
+    {
+        text = "General",
+        separator = true
+    });
+    mainMenuItems.Add(new
+    {
+        text = "ዳሽቦርድ",
+        url = "/",
+        iconCss = "fa-solid fas fa-box"
+    });
+
+    mainMenuItems.Add(new
+    {
+        text = "ስቶክ እቃዎች",
+        url = "/DataGrid/dialogtemplate",
+        iconCss = "fa-solid fa fa-arrow-right-arrow-left"
+
+    });
+    mainMenuItems.Add(new
+    {
+        text = "ሞዴል-19 ገቢ",
+        url = "/Entries/dialogtemplate",
+        items = new List<object>
+        ()
+            {
+            new {text="Submenu1",url="/#"},
+            new {text="Submenu2",url="/#"},
+            new {text="Submenu2",url="/#"}
+            }
+    });
+    mainMenuItems.Add(new
+    {
+        text = "StockItems1",
+        url = "/StockItems1",
+    });
+    mainMenuItems.Add(new
+    {
+        text = "ሞዴል-22 ወጪ",
+        url = "/Outs/dialogtemplate",
+    });
+
+    mainMenuItems.Add(new
+    {
+        text = "Extras",
+        separator = true
+    });
+    mainMenuItems.Add(new
+    {
+        text = "Reports",
+        url = "#",
+        iconCss = "fa-solid fas fa-chart-bar"
+
+    });
+    mainMenuItems.Add(new
+    {
+        text = "Settings",
+        url = "#",
+        iconCss = "fa-solid fas fa-cog"
+
+    });
+    if (User.IsInRole("SuperAdmin"))
+    {
+        mainMenuItems.Add(new
+        {
+            text = "UserManagement",
+            url = "/#",
+            iconCss = "fa-solid fas fa-users",
+            items = new List<object>
+            ()
+                {
+                new {text="AddUser",url="/Identity/Account/Register", iconCss = "fa-solid fas fa-user"},
+                new {text="RoleManager",url="/RoleManager",iconCss = "fa-solid fas fa-arrow-right"},
+                new {text="UserRoles",url="/UserRoles",iconCss = "fa-solid fas fa-arrow-right"},
+
+                }
+        });
+    }
+}
+
+                <ejs-sidebar id="sidebar-menu" class="dock-menu" width="220px" target=".main-content" dockSize="50px" enableDock="true">
+                    <e-content-template>
+                        <div class="main-menu">
+                            @*<p class="main-menu-header">MAIN</p>*@
+                            <div>
+                                <ejs-menu id="main-menubar" items="mainMenuItems" orientation="Vertical" cssClass="dock-menu" hamburgerMode></ejs-menu>
+                            </div>
+
+                        </div>
+                        @*<div class="action">
+                                <p class="main-menu-header">ACTION</p>
+                                <button class="e-btn action-btn" id="action-button">+ Button</button>
+                            </div>*@
+                    </e-content-template>
+                </ejs-sidebar>
+
+
+                <!--<ejs-sidebar id="sidebar" enableDock dockSize="100px"
+                            target=".dock-target" enableGestures="false">
+
+                    <e-content-template>
+                        <div class="logo-wrapper">
+                            <div class="app-logo">
+                                <img class="profile-pic" src="~/editedlogo.png" />
+                                <span class="mb-0 logo-title">STORE APP</span>
+                            </div>
+                            <div class="w-100"></div>
+                            <i id="sidebar-toggler" class="fa-solid fa fa-angle-left"></i>
+
+                        </div>-->
+                @* logged in user *@
+                <!--<div class="profile-wrapper">
+                            <img class="profile-pic" src="~/profile.png" />
+                            <div class="titles d-flex flex-column p-sm-3">
+
+                                <span class="text-muted">Muhdin Mussema</span>
+                            </div>
+                        </div>
+                        <ejs-menu id="menu" items="menuItems" orientation="Vertical"></ejs-menu>
+                    </e-content-template>
+                </ejs-sidebar>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        dockBar = document.getElementById('sidebar').ej2_instances[0];
+                        document.getElementById('sidebar-toggler').onclick = function () {
+                            dockBar.toggle();
+                        };
+                    });
+                </script>-->
