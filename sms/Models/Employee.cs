@@ -20,6 +20,12 @@ namespace sms.Models
         [JsonIgnore]
         [IgnoreDataMember]
         public virtual Department Department { get; set; }
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual ICollection<Out> Outs { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public virtual ApplicationUser User { get; set; }
     }
 }

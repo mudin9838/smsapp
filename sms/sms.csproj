@@ -4,6 +4,10 @@
     <TargetFramework>net6.0</TargetFramework>
         <UserSecretsId>aspnet-sms-8C8AFD58-1C3F-4553-A01F-92A05032DE24</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Views\Out\bd1vjwua.0yk~" />
+  </ItemGroup>
   
  
   <ItemGroup>

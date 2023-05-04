@@ -1,0 +1,274 @@
+﻿@{
+    var DropDownListParent = new Syncfusion.EJ2.DropDowns.DropDownList() { DataSource = ViewBag.ParentId, Query = "new ej.data.Query()", Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "ParentId", Text = "ParentName" } };
+    var DropDownListStatus = new Syncfusion.EJ2.DropDowns.DropDownList() { DataSource = ViewBag.StatusId, Query = "new ej.data.Query()", Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "StatusId", Text = "StatusName" } };
+    var DropDownListStock = new Syncfusion.EJ2.DropDowns.DropDownList() { DataSource = ViewBag.StatusId, Query = "new ej.data.Query()", Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "Model", Text = "Model" } };
+
+}
+
+<div class="control-section">
+    <ejs-grid id="Grid" created="created" detailTemplate="#detailtemplate" allowPaging="true" actionComplete="actionComplete" allowSorting="true" allowResizing="true" allowReordering="true" toolbar="@(new List<string>() { "Search", "Add" , "Edit" , "Delete" , "Update" , "Cancel" , "ExcelExport" , "CsvExport" , "PdfExport","Print"  })" allowFiltering="true" allowSelection="true" allowExcelExport="true" allowPdfExport="true" toolbarClick="toolbarClick">
+        <e-data-manager url="/Entrie/UrlDataSource" insertUrl="/Entrie/Insert" updateUrl="/Entrie/Update" removeUrl="/Entrie/Remove" adaptor="UrlAdaptor"></e-data-manager>
+        <e-grid-filterSettings type="Menu"></e-grid-filterSettings>
+        <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Dialog" template='#dialogtemplate' showConfirmDialog="true" showDeleteConfirmDialog="true"></e-grid-editSettings>
+        <e-grid-selectionsettings type="Single"></e-grid-selectionsettings>
+        <e-grid-pagesettings pageCount="10"></e-grid-pagesettings>
+
+        <e-grid-columns>
+            <e-grid-column type="checkbox" width="50"></e-grid-column>
+            <e-grid-column field="EntryId" headerText="EntryId" isPrimaryKey="true" isIdentity="true" visible="false"></e-grid-column>
+            <e-grid-column field="ParentId" foreignKeyField="ParentId" headerText="ቅ/ፅ/ቤት" foreignKeyValue="ParentName" dataSource="ViewBag.ParentId" editType="dropdownedit" edit="new {@params = DropDownListParent }"></e-grid-column>
+            <e-grid-column field="RecieptNo" visible="false" headerText="የደረሰኝ ቁጥር"></e-grid-column>
+            @*<e-grid-column field="Serie" headerText="ሴሪ"></e-grid-column>
+            <e-grid-column field="RecieptNo" headerText="የደረሰኝ ቁጥር"></e-grid-column>
+            <e-grid-column field="PageNumberFrom" headerText="ከ"></e-grid-column>
+            <e-grid-column field="PageNumberTo" headerText="እስከ"></e-grid-column>
+            <e-grid-column field="StockId" foreignKeyValue="Quantity" headerText="ስቶክ ያለው" dataSource="ViewBag.StockId"></e-grid-column>
+            <e-grid-column field="Quantity" id="Quantity" headerText="የተጠየቀው ብዛት" editType="numericedit"></e-grid-column>
+            <e-grid-column field="EachPrice" id="EachPrice" headerText="ያንዱ ዋጋ" editType="numericedit"></e-grid-column>
+            <e-grid-column field="Vat" id="Vat" headerText="ቫት" editType="numericedit"></e-grid-column>
+            <e-grid-column field="TotalPrice" id="TotalPrice" headerText="የዋጋው ድምር" editType="numericedit"></e-grid-column>*@
+            <e-grid-column field="StockId" foreignKeyValue="Model" headerText="ሞዴል" dataSource="ViewBag.StockId" editType="dropdownedit" edit="new {@params = DropDownListStock }"></e-grid-column>
+            <e-grid-column field="StockId" foreignKeyValue="Quantity" headerText="ስቶክ ያለው" dataSource="ViewBag.StockId"></e-grid-column>
+            <e-grid-column field="EntryDate" headerText="የገባበት ቀን" editType="datepickeredit" format="yMd"></e-grid-column>
+
+            <e-grid-column field="StatusId" id="StatusId" customAttributes=@(new{@class="customcss"}) foreignKeyField="StatusId" headerText="Status" foreignKeyValue="StatusName" dataSource="ViewBag.StatusId" editType="dropdownedit" edit="new {@params = DropDownListStatus }"></e-grid-column>
+            
+        </e-grid-columns>
+
+    </ejs-grid>
+
+</div>
+<style class="cssStyles">
+     .detailtable td {
+        font-size: 13px;
+        padding: 4px;
+        max-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: normal;
+    }
+    .e-grid .e-rowcell.customcss {
+        background-color: #ecedee;
+        color: red;
+        font-family: 'Bell MT';
+        font-size: 20px;
+    }
+
+    .e-grid .e-headercell.customcss {
+        background-color: #2382c3;
+        color: white;
+        font-family: 'Bell MT';
+        font-size: 30px;
+    }
+ 
+
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="~/js/custom.js"></script>
+<script id='dialogtemplate' type="text/x-template">
+    <div id="dialogTemp">
+    </div>
+</script>
+<script type="text/x-template" id="detailtemplate">
+    <table class="detailtable" width="100%">
+        <colgroup>
+            <col width="35%" />
+            <col width="35%" />
+            <col width="30%" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td>
+                       <span style="font-weight: 500;">የደረሰኝ ቁጥር: </span> ${RecieptNo}
+
+                </td>
+
+                <td>
+                       <span style="font-weight: 500;">የተጠየቀው ብዛት: </span> ${Quantity}
+                </td>
+            </tr>
+
+
+            <tr>
+                 <td>
+                    <span style="font-weight: 500;">ሴሪ: </span> ${Serie}
+                </td>
+                <td>
+                    <span style="font-weight: 500;">ያንዱ ዋጋ: </span> ${EachPrice}
+                </td>
+
+            </tr>
+            <tr>
+                 <td>
+                       <span style="font-weight: 500;">ከ(PageNumberFrom): </span> ${PageNumberFrom} - <span style="font-weight: 500; margin-left:2px;">እስከ(PageNumberTo): </span> ${PageNumberTo}
+                    
+                </td>
+                <td>
+                    <span style="font-weight: 500;">ቫት(15%): </span> ${Vat}
+                </td>
+
+            </tr>
+             <tr>
+               <td></td>
+                <td>
+                    <span style="font-weight: 500;">የዋጋው ድምር: </span> ${TotalPrice}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+
+<script>
+    function toolbarClick(args) {
+        if (args.item.id === this.element.id + '_pdfexport') {
+            this.pdfExport();
+        }
+        if (args.item.id === this.element.id + '_csvexport') {
+            this.csvExport();
+        }
+        if (args.item.id === this.element.id + '_excelexport') {
+            this.excelExport();
+        }
+    }
+</script>
+<script>
+    function actionComplete(args) {
+
+        if (args.requestType === 'beginEdit' || args.requestType === 'add') {
+
+            let spinner = ej.popups.createSpinner({ target: args.dialog.element });
+            ej.popups.showSpinner(args.dialog.element);
+            if (args.requestType === 'beginEdit') {
+                var ajax = new ej.base.Ajax({
+                    url: "@Url.Action("EditPartial", "Entrie")", //render the partial view
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({ value: args.rowData })
+                });
+                ajax.send().then(function (data) {
+                    appendElement(data, args.form); //Render the edit form with selected record
+                    args.form.elements.namedItem('EntryId').focus();
+                    ej.popups.hideSpinner(args.dialog.element);
+
+                }).catch(function (xhr) {
+                    console.log(xhr);
+                    ej.popups.hideSpinner(args.dialog.element);
+                });
+
+            }
+            if (args.requestType === 'add') {
+                var ajax = new ej.base.Ajax({
+                    url: "@Url.Action("AddPartial", "Entrie")", //render the partial view
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({ value: args.rowData })
+
+                });
+                ajax.send().then(function (data) {
+                    appendElement(data, args.form); //Render the edit form with selected record
+                    args.form.elements.namedItem('EntryId').focus();
+                    ej.popups.hideSpinner(args.dialog.element);
+                }).catch(function (xhr) {
+                    console.log(xhr);
+                    ej.popups.hideSpinner(args.dialog.element);
+                });
+
+            }
+
+        }
+
+
+    }
+
+
+
+    function appendElement(elementString, form) {
+        form.querySelector("#dialogTemp").innerHTML = elementString;
+        //form.ej2_instances[0].addRules('CustomerId', {required: true, number: true });
+        //form.ej2_instances[0].addRules('ParentId', {required: true });
+
+        form.ej2_instances[0].addRules('Quantity', { required: true });
+        form.ej2_instances[0].addRules('EntryDate', { required: true });
+        form.ej2_instances[0].refresh();  // refresh method of the formObj
+        var script = document.createElement('script');
+        script.type = "text/javascript";
+        var serverScript = form.querySelector("#dialogTemp").querySelector('script');
+        script.textContent = serverScript.innerHTML;
+        document.head.appendChild(script);
+        serverScript.remove();
+    }
+
+
+</script>
+<script type="text/javascript">
+    function created(args) {
+        // extending the default UrlAdaptor
+        class CustomAdaptor extends ej.data.UrlAdaptor {
+            processResponse(data, ds, query, xhr, request, changes) {
+                if (!ej.base.isNullOrUndefined(data.message)) {
+                    alert(data.message);
+                }
+                if (!ej.base.isNullOrUndefined(data.data))
+                    return data.data;
+                else
+                    return data;
+            }
+        }
+        var grid = document.querySelector('#Grid').ej2_instances[0];
+        grid.dataSource = new ej.data.DataManager({
+            url: "/Entrie/UrlDatasource",
+            insertUrl: "/Entrie/Insert",
+            updateUrl: "/Entrie/Update",
+            removeUrl: "/Entrie/Remove",
+            adaptor: new CustomAdaptor()
+        });
+    }
+</script>
+@*<script>
+    function countrychange() {
+        // disable the state DropDownList
+        var state = document.getElementById('EmployeeId').ej2_instances[0];
+        //var city = document.getElementById('MeasurementUnitId').ej2_instances[0];
+        var country = document.getElementById('DepartmentId').ej2_instances[0];
+        state.enabled = true;
+        //frame the query based on selected value in country DropDownList.
+        var tempQuery = new ej.data.Query().where('DepartmentId', 'equal', country.value);
+        // set the framed query based on selected value in country DropDownList.
+        state.query = tempQuery;
+        // set null value to state DropDownList text property
+        state.text = null;
+        //  bind the property changes to state DropDownList
+        state.dataBind();
+        // set null value to city DropDownList text property
+        // city.text = null;
+        // disable the city DropDownList
+        //city.enabled = false;
+        // bind the property changes to City DropDownList
+        // city.dataBind();
+    }
+</script>*@
+<script src="~/js/custom.js"></script>
+
+<script>
+
+
+    function changeValues() {
+
+        var quantity = document.getElementById('Quantity');
+        var vat = document.getElementById('Vat');
+        var eachprice = document.getElementById('EachPrice');
+        var totalprice = document.getElementById('TotalPrice');
+
+
+        var vatValue = eachprice.value * quantity.value * 0.15;
+        var totalPriceWithVat = quantity.value * eachprice.value + vatValue;
+        vat.value = vatValue;
+        totalprice.value = totalPriceWithVat;
+
+    }
+  
+
+</script>

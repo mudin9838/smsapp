@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 #nullable disable
 
 namespace sms.Models
@@ -10,7 +11,6 @@ namespace sms.Models
         public int EntryId { get; set; }
         public string ParentId { get; set; }
         public string RecieptNo { get; set; }
-        public string Model { get; set; }
         public string Serie { get; set; }
         public string PageNumberFrom { get; set; }
         public string PageNumberTo { get; set; }
@@ -20,10 +20,30 @@ namespace sms.Models
         public decimal TotalPrice { get; set; }
         public DateTime EntryDate { get; set; }
         public int StockId { get; set; }
-        public int StatusId { get; set; }
+        public int StatusId { get; set; } = 1;
+    public int StatusdelId { get; set; } = 1;
 
+
+
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual Parent Parent { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual Status Status { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual StockItem Stock { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public virtual Statusdel Statusdel { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public virtual ApplicationUser User { get; set; }
+
     }
 }

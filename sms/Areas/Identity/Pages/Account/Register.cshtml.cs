@@ -30,14 +30,14 @@ namespace sms.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-      private readonly EserviceContext _contexts;
+      private readonly ApplicationDbContext _contexts;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            EserviceContext _context
+            ApplicationDbContext _context
             )
         {
             _userManager = userManager;

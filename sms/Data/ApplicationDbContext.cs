@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection.Emit;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -17,7 +18,7 @@ namespace sms.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.HasDefaultSchema("Identity");
+            builder.HasDefaultSchema("dbo");
             builder.Entity<ApplicationUser>(entity =>
             {
                 entity.ToTable(name: "User");
@@ -53,5 +54,18 @@ namespace sms.Data
                 entity.ToTable("UserTokens");
             });
         }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Department> Departments { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Entry> Entries { get; set; }
+        public virtual DbSet<MeasurementUnit> MeasurementUnits { get; set; }
+        public virtual DbSet<Out> Outs { get; set; }
+        public virtual DbSet<Parent> Parents { get; set; }
+        public virtual DbSet<Status> Statuses { get; set; }
+
+        public virtual DbSet<Statusdel> Statusdels { get; set; }
+        public virtual DbSet<StockItem> StockItems { get; set; }
+        public virtual DbSet<SubCategory> SubCategories { get; set; }
+
     }
 }

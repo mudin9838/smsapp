@@ -19,36 +19,47 @@
         iconCss = "fa-solid fas fa-box"
     });
 
-    mainMenuItems.Add(new
+     mainMenuItems.Add(new
     {
         text = "ስቶክ እቃዎች",
         url = "/DataGrid/dialogtemplate",
-        iconCss = "fa-solid fa fa-arrow-right-arrow-left"
+        iconCss = "fa fas fa-arrow-right"
 
     });
     mainMenuItems.Add(new
     {
         text = "ሞዴል-19 ገቢ",
-        url = "/Entries/dialogtemplate",
+        url = "/Entrie/dialogtemplate",
+        iconCss = "fa fas fa-arrow-right"
+
+    });
+   
+    mainMenuItems.Add(new
+    {
+        text = "ወጪ",
+        url = "/#",
         items = new List<object>
         ()
             {
-            new {text="Submenu1",url="/#"},
-            new {text="Submenu2",url="/#"},
-            new {text="Submenu2",url="/#"}
+            new {text="ሞዴል-22 ወጪ",url="/Out/dialogtemplate", iconCss = "fa fas fa-arrow-right"},
+         //   new {text="ሞዴል-20 ወጪ",url="/Outed/dialogtemplate"}
             }
     });
+  
     mainMenuItems.Add(new
     {
-        text = "StockItems1",
-        url = "/StockItems1",
-    });
-    mainMenuItems.Add(new
-    {
-        text = "ሞዴል-22 ወጪ",
-        url = "/Outs/dialogtemplate",
-    });
+        text = "ሰራተኛ መረጃ",
+        url = "/Employee",
+        iconCss = "fa fas fa-arrow-right"
 
+    });
+    mainMenuItems.Add(new
+    {
+        text = "ዕቃ መረካከብያ",
+        url = "/#",
+        iconCss = "fa fas fa-arrow-right"
+
+    });
     mainMenuItems.Add(new
     {
         text = "Extras",
@@ -104,36 +115,4 @@
                 </ejs-sidebar>
 
 
-                <!--<ejs-sidebar id="sidebar" enableDock dockSize="100px"
-                            target=".dock-target" enableGestures="false">
-
-                    <e-content-template>
-                        <div class="logo-wrapper">
-                            <div class="app-logo">
-                                <img class="profile-pic" src="~/editedlogo.png" />
-                                <span class="mb-0 logo-title">STORE APP</span>
-                            </div>
-                            <div class="w-100"></div>
-                            <i id="sidebar-toggler" class="fa-solid fa fa-angle-left"></i>
-
-                        </div>-->
-                @* logged in user *@
-                <!--<div class="profile-wrapper">
-                            <img class="profile-pic" src="~/profile.png" />
-                            <div class="titles d-flex flex-column p-sm-3">
-
-                                <span class="text-muted">Muhdin Mussema</span>
-                            </div>
-                        </div>
-                        <ejs-menu id="menu" items="menuItems" orientation="Vertical"></ejs-menu>
-                    </e-content-template>
-                </ejs-sidebar>
-
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        dockBar = document.getElementById('sidebar').ej2_instances[0];
-                        document.getElementById('sidebar-toggler').onclick = function () {
-                            dockBar.toggle();
-                        };
-                    });
-                </script>-->
+              

@@ -1,0 +1,111 @@
+﻿@model sms.Models.Entry
+
+@using Syncfusion.EJ2
+
+<div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <div class="e-float-input e-control-wrapper">
+                <input asp-for="EntryId" value=@Model.EntryId.ToString() disabled type='text' />
+                <span class="e-float-line"></span>
+                <label asp-for="EntryId" class="e-float-text e-label-top">EntryId</label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <ejs-dropdownlist id="ParentId" value=@Model.ParentId dataSource="@ViewBag.ParentId" placeholder=" እናት መ/ቤት" floatLabelType="Always" popupHeight="300px">
+                <e-dropdownlist-fields text="ParentName" value="ParentId"></e-dropdownlist-fields>
+            </ejs-dropdownlist>
+        </div>
+
+        <div class="form-group col-md-4">
+            <div class="e-float-input e-control-wrapper">
+                <input asp-for="Serie" type='text' value=@Model.Serie />
+                <span class="e-float-line"></span>
+                <label asp-for="Serie" class="e-float-text e-label-top">ሴሪ</label>
+            </div>
+        </div>
+    
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <div class="e-float-input e-control-wrapper">
+                <input asp-for="RecieptNo" value=@Model.RecieptNo type='text' />
+                <span class="e-float-line"></span>
+                <label asp-for="RecieptNo" class="e-float-text e-label-top">የደረሰኝ ቁጥር</label>
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            <div class="e-float-input e-control-wrapper">
+                <input asp-for="PageNumberFrom" value=@Model.PageNumberFrom type='text' />
+                <span class="e-float-line"></span>
+                <label asp-for="PageNumberFrom" class="e-float-text e-label-top">ከ</label>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="e-float-input e-control-wrapper">
+                <input asp-for="PageNumberTo" value=@Model.PageNumberTo type='text' />
+                <span class="e-float-line"></span>
+                <label asp-for="PageNumberTo" class="e-float-text e-label-top">እስከ</label>
+            </div>
+        </div>
+
+    </div>
+
+   
+
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <ejs-dropdownlist id="StockId" value=@Model.StockId dataSource="@ViewBag.StockId" placeholder="ሞዴል" floatLabelType="Always" popupHeight="300px">
+                <e-dropdownlist-fields text="Model" foreignKeyValue="Model" value="StockId"></e-dropdownlist-fields>
+            </ejs-dropdownlist>
+        </div>
+        <div class="form-group col-md-2">
+            <div class="e-float-input e-control-wrapper">
+                <input asp-for="Quantity" id="Quantity" type='text' value=@Model.Quantity />
+                <span class="e-float-line"></span>
+                <label asp-for="Quantity" class="e-float-text e-label-top">ብዛት</label>
+            </div>
+        </div>
+        <div class="form-group col-md-2">
+            <div class="e-float-input e-control-wrapper">
+                <input asp-for="EachPrice" id="EachPrice" type='text' value=@Model.EachPrice onkeyup="changeValues()"/>
+                <span class="e-float-line"></span>
+                <label asp-for="EachPrice" class="e-float-text e-label-top">ያንዱ ዋጋ</label>
+            </div>
+        </div>
+
+        <div class="form-group col-md-2">
+            <div class="e-float-input e-control-wrapper">
+                <input asp-for="Vat" id="Vat" type='text' value=@Model.Vat />
+                <span class="e-float-line"></span>
+                <label asp-for="Vat" class="e-float-text e-label-top">ቫት(Vat)</label>
+            </div>
+        </div>
+        <div class="form-group col-md-2">
+            <div class="e-float-input e-control-wrapper">
+                <input asp-for="TotalPrice" id="TotalPrice" type='text' value=@Model.TotalPrice />
+                <span class="e-float-line"></span>
+                <label asp-for="TotalPrice" class="e-float-text e-label-top">የዋጋው ድምር(ቫትን ጨምሮ)</label>
+            </div>
+        </div>
+
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <ejs-datetimepicker id="EntryDate" serverTimezoneOffset="7.0" value=@Model.EntryDate placeholder="ገቢ የተደረገበት ቀን" floatLabelType="Always"></ejs-datetimepicker>
+
+        </div>
+        @if (User.IsInRole("SuperAdmin"))
+        {
+                <div class="form-group col-md-4">
+                <ejs-dropdownlist id="StatusId" value=@Model.StatusId dataSource="@ViewBag.StatusId" placeholder="Status" floatLabelType="Always" popupHeight="300px">
+                        <e-dropdownlist-fields text="StatusName" foreignKeyValue="StatusName" value="StatusId"></e-dropdownlist-fields>
+                    </ejs-dropdownlist>
+                </div>
+        }
+    </div>
+</div>
+
+
+<ejs-scripts></ejs-scripts>

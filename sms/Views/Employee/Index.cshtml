@@ -1,0 +1,68 @@
+﻿@{
+    var DropDownListDepartment = new Syncfusion.EJ2.DropDowns.DropDownList() { DataSource = ViewBag.DepartmentId, Query = "new ej.data.Query()", Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "DepartmentId", Text = "DepartmentName" } };
+    var DropDownListEmployee = new Syncfusion.EJ2.DropDowns.DropDownList() { DataSource = ViewBag.EmployeeId, Query = "new ej.data.Query()", Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "EmployeeId", Text = "EmployeeName" } };
+
+}
+
+<ejs-grid id="Grid" allowPaging="true" allowSorting="true" allowResizing="true" allowReordering="true" allowGrouping="true" toolbar="@(new List<string>() { "Search", "Add", "Edit", "Delete","Update","Cancel" , "ExcelExport" , "CsvExport" ,"PdfExport"})" allowFiltering="true" allowSelection="true" allowExcelExport="true" allowPdfExport="true" toolbarClick="toolbarClick">
+  <e-data-manager url="/Employee/UrlDataSource" adaptor="UrlAdaptor" insertUrl="/Employee/Insert" updateUrl="/Employee/Update" removeUrl="/Employee/Delete"></e-data-manager>
+  <e-grid-filterSettings type="Menu"></e-grid-filterSettings> 
+<e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Dialog"></e-grid-editSettings> 
+<e-grid-selectionsettings type="Single"></e-grid-selectionsettings>
+    <e-grid-columns>
+        <e-grid-column type="checkbox" width="50"></e-grid-column>
+        <e-grid-column field="EmployeeId" headerText="EmployeeId" headerTemplate="#employeetemplate" isPrimaryKey="true" isIdentity="true"></e-grid-column>
+        <e-grid-column field="DepartmentId" foreignKeyField="DepartmentId" headerText="የሥራ ክፍል" foreignKeyValue="DepartmentName" dataSource="ViewBag.DepartmentId" editType="dropdownedit" edit="new {@params = DropDownListDepartment }"></e-grid-column>
+        <e-grid-column field="EmployeeId" foreignKeyField="EmployeeId" headerText="የሰራተኛው ስም" foreignKeyValue="EmployeeName" dataSource="ViewBag.EmployeeId" editType="dropdownedit" edit="new {@params = DropDownListEmployee }"></e-grid-column>
+     @*  <e-grid-column field="Department"  headerText="Department"></e-grid-column>
+       <e-grid-column field="Outs"  headerText="Outs"></e-grid-column>
+       <e-grid-column field="User"  headerText="User"></e-grid-column>*@
+    </e-grid-columns>
+</ejs-grid>
+<script id="employeetemplate" type="text/x-template">
+    <span class="e-icon-userlogin e-icons employee"></span> Emp ID
+</script>
+<style>
+
+    @@font-face {
+        font-family: 'ej2-headertemplate';
+        src: url(data:application/x-font-ttf;charset=utf-8;base64,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) format('truetype');
+        font-weight: bolder;
+        font-style: normal;
+    }
+
+    .e-grid .e-icon-userlogin::before {
+        font-family: 'ej2-headertemplate';
+        width: 15px !important;
+        content: '\e702';
+    }
+
+    .e-grid .e-icon-calender::before {
+        font-family: 'ej2-headertemplate';
+        width: 15px !important;
+        content: '\e960';
+    }
+
+    .e-icon-calender,
+    .e-icon-userlogin {
+        margin-right: 5px;
+    }
+</style>
+
+<script>
+function toolbarClick(args)
+{
+  if (args.item.id === this.element.id+'_pdfexport')
+  {
+    this.pdfExport();
+  }
+   if (args.item.id === this.element.id+'_csvexport') 
+   {
+    this.csvExport();
+   }
+  if (args.item.id === this.element.id + '_excelexport')
+  {
+    this.excelExport();
+  }
+}
+</script>

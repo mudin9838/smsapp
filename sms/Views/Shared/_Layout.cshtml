@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="~/css/ej2/material.css" />
     <script src="~/js/ej2/ej2.min.js"></script>
 </head>
-<body>
+<body onload="f_color()">
     @if (User.Identity.IsAuthenticated)
     {
         <partial name="_Header" />

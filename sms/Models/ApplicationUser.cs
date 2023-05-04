@@ -13,5 +13,10 @@ namespace sms.Models
         public int UsernameChangeLimit { get; set; } = 10;
         public byte[] ProfilePicture { get; set; }
         public string ParentId { get; internal set; }
+
+        //public static implicit operator ApplicationUser(string v)
+        //{
+        //   // throw new NotImplementedException();
+        //}
     }
 }

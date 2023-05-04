@@ -1,0 +1,119 @@
+﻿@model IEnumerable<sms.Models.Out>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RecieptNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.From)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.To)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Serie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EachPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OutDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Parent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Statusdel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RecieptNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.From)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.To)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Serie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EachPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OutDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.DepartmentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parent.ParentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.StatusId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Statusdel.StatusdelId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock.StockId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.OutId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.OutId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.OutId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

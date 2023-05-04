@@ -11,9 +11,9 @@ namespace sms.Controllers
   [Authorize]
     public class DashboardController : Controller
     {
-        //private EserviceContext _context;
+        //private ApplicationDbContext _context;
 
-        //public DashboardController(EserviceContext Context)
+        //public DashboardController(ApplicationDbContext Context)
         //{
         //    this._context = Context;
         //}
