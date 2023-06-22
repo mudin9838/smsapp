@@ -29,7 +29,7 @@
     mainMenuItems.Add(new
     {
         text = "ሞዴል-19 ገቢ",
-        url = "/Entrie/dialogtemplate",
+        url = "/Entrymaster/dialogtemplate",
         iconCss = "fa fas fa-arrow-right"
 
     });
@@ -41,7 +41,7 @@
         items = new List<object>
         ()
             {
-            new {text="ሞዴል-22 ወጪ",url="/Out/dialogtemplate", iconCss = "fa fas fa-arrow-right"},
+            new {text="ሞዴል-22 ወጪ",url="/Datagridmaster/dialogtemplate", iconCss = "fa fas fa-arrow-right"},
          //   new {text="ሞዴል-20 ወጪ",url="/Outed/dialogtemplate"}
             }
     });
@@ -60,6 +60,72 @@
         iconCss = "fa fas fa-arrow-right"
 
     });
+    //mainMenuItems.Add(new
+    //{
+    //    text = "MasterDetail",
+    //    url = "/DataGrids/dialogtemplate",
+    //    iconCss = "fa fas fa-arrow-right"
+
+    //});
+    //mainMenuItems.Add(new
+    //{
+    //    text = "ታርጋ",
+    //    url = "/Targa",
+    //    iconCss = "fa fas fa-arrow-right"
+
+    //});
+    //mainMenuItems.Add(new
+    //{
+    //    text = "ሹፌር",
+    //    url = "/Driver",
+    //    iconCss = "fa fas fa-arrow-right"
+
+    //});
+    //mainMenuItems.Add(new
+    //{
+    //    text = "አጠቃላይ መረጃ",
+    //    url = "/General",
+    //    iconCss = "fa fas fa-arrow-right"
+
+    //});
+    //mainMenuItems.Add(new
+    //{
+    //    text = "ነዳጅ",
+    //    url = "/Litre",
+    //    iconCss = "fa fas fa-arrow-right"
+
+    //});
+
+    mainMenuItems.Add(new
+    {
+        text = "ነዳጅ መመዝገብያ",
+        url = "/#",
+        items = new List<object>
+      ()
+            {
+            //new {text="አጠቃላይ መረጃ",url = "/Generals", iconCss = "fa fas fa-arrow-right"},
+            new {text="የነዳጅ አጠቃላይ መረጃ",url = "/DataGrids/dialogtemplate", iconCss = "fa fas fa-arrow-right"},
+            new {text="የተሽከርካሪ አይነት",url = "/Car", iconCss = "fa fas fa-arrow-right"},
+            new {text="የነዳጅ አይነት",url = "/Fuel", iconCss = "fa fas fa-arrow-right"},  
+            new {text="የሹፌር ስም",url = "/Driver", iconCss = "fa fas fa-arrow-right"},
+            new {text="የሰሌዳ ቁጥር",url = "/Targa", iconCss = "fa fas fa-arrow-right"}
+          
+            }
+    });
+
+    mainMenuItems.Add(new
+    {
+        text = "ሰርቪስ መመዝገብያ",
+        url = "/#",
+        items = new List<object>
+      ()
+            {
+            new {text="አጠቃላይ መረጃ",url = "/Services/dialogtemplate", iconCss = "fa fas fa-arrow-right"},
+
+
+            }
+    });
+
     mainMenuItems.Add(new
     {
         text = "Extras",
@@ -81,6 +147,7 @@
     });
     if (User.IsInRole("SuperAdmin"))
     {
+      
         mainMenuItems.Add(new
         {
             text = "UserManagement",

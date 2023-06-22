@@ -29,6 +29,8 @@
             <e-grid-column field="TotalPrice" id="TotalPrice" headerText="የዋጋው ድምር" editType="numericedit"></e-grid-column>*@
             <e-grid-column field="StockId" foreignKeyValue="Model" headerText="ሞዴል" dataSource="ViewBag.StockId" editType="dropdownedit" edit="new {@params = DropDownListStock }"></e-grid-column>
             <e-grid-column field="StockId" foreignKeyValue="Quantity" headerText="ስቶክ ያለው" dataSource="ViewBag.StockId"></e-grid-column>
+            <e-grid-column field="StockId" foreignKeyValue="RegisteredDate" headerText="previous Date" dataSource="ViewBag.StockId"></e-grid-column>
+            <e-grid-column field="StockId" foreignKeyValue="TotalPrice" headerText="previous Value" dataSource="ViewBag.StockId"></e-grid-column>
             <e-grid-column field="EntryDate" headerText="የገባበት ቀን" editType="datepickeredit" format="yMd"></e-grid-column>
 
             <e-grid-column field="StatusId" id="StatusId" customAttributes=@(new{@class="customcss"}) foreignKeyField="StatusId" headerText="Status" foreignKeyValue="StatusName" dataSource="ViewBag.StatusId" editType="dropdownedit" edit="new {@params = DropDownListStatus }"></e-grid-column>

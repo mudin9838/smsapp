@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="~/css/ej2/material.css" />
     <script src="~/js/ej2/ej2.min.js"></script>
 </head>
-<body onload="f_color()">
+<body>
     @if (User.Identity.IsAuthenticated)
     {
         <partial name="_Header" />
@@ -28,9 +28,11 @@
 
 
             <script src="~/lib/jquery/dist/jquery.min.js"></script>
+          <script src="~/microsoft/signalr/dist/browser/signalr.js"></script>
+            <script src="~/js/site.js"></script>
             <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="~/js/site.js" asp-append-version="true"></script>
-            <script>
+@*            <script src="~/js/site.js" asp-append-version="true"></script>
+*@            <script>
                 document.addEventListener('DOMContentLoaded', function () {
                     sidebarInstance = document.getElementById('sidebar-menu').ej2_instances[0];
 

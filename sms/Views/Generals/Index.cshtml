@@ -1,0 +1,77 @@
+﻿@{
+    var DropDownListParent = new Syncfusion.EJ2.DropDowns.DropDownList() { DataSource = ViewBag.ParentId, Query = "new ej.data.Query()", Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "ParentId", Text = "ParentName" } };
+    var DropDownListCategory = new Syncfusion.EJ2.DropDowns.DropDownList() { DataSource = ViewBag.CarId, Query = "new ej.data.Query()", Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "CarId", Text = "CarName" } };
+    var DropDownListSubCategory = new Syncfusion.EJ2.DropDowns.DropDownList() { DataSource = ViewBag.TargaId, Query = "new ej.data.Query()", Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "TargaId", Text = "TargaName" } };
+    var DropDownListMeasurementUnit = new Syncfusion.EJ2.DropDowns.DropDownList() { DataSource = ViewBag.DriverId, Query = "new ej.data.Query()", Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "DriverId", Text = "DriverName" } };
+    var DropDownListMeasurementUnits = new Syncfusion.EJ2.DropDowns.DropDownList() { DataSource = ViewBag.FuelId, Query = "new ej.data.Query()", Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "FuelId", Text = "FuelName" } };
+
+}
+
+
+
+<ejs-grid id="Grid" created="created" allowPaging="true" allowSorting="true" allowResizing="true" allowReordering="true" allowGrouping="true" toolbar="@(new List<string>() { "Search", "Add", "Edit", "Delete","Update","Cancel" , "ExcelExport" , "CsvExport" ,"PdfExport","Print"})" allowFiltering="true" allowSelection="true" allowExcelExport="true" allowPdfExport="true" toolbarClick="toolbarClick">
+    <e-data-manager url="/Generals/UrlDataSource" adaptor="UrlAdaptor" insertUrl="/Generals/Insert" updateUrl="/Generals/Update" removeUrl="/Generals/Remove"></e-data-manager>
+  <e-grid-filterSettings type="Menu"></e-grid-filterSettings>
+    <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Dialog" showConfirmDialog="true" showDeleteConfirmDialog="true"></e-grid-editSettings>
+    <e-grid-selectionsettings type="Single"></e-grid-selectionsettings>
+    <e-grid-pagesettings pageCount="10"></e-grid-pagesettings>
+    <e-grid-columns>
+        <e-grid-column type="checkbox" width="50"></e-grid-column>
+        <e-grid-column field="GeneralId" headerText="GeneralId" isPrimaryKey="true" isIdentity="true" visible="false"></e-grid-column>
+        <e-grid-column field="ParentId" foreignKeyField="ParentId" headerText="ቅ/ፅ/ቤት" foreignKeyValue="ParentName" dataSource="ViewBag.ParentId" editType="dropdownedit" edit="new {@params = DropDownListParent }"></e-grid-column>
+        <e-grid-column field="CarId" foreignKeyField="CarId" headerText="የተሽከርካሪ አይነት" foreignKeyValue="CarName" dataSource="ViewBag.CarId" editType="dropdownedit" edit="new {@params = DropDownListCategory }"></e-grid-column>
+        <e-grid-column field="TargaId" foreignKeyField="TargaId" headerText="የሰሌዳ ቁጥር" foreignKeyValue="TargaName" dataSource="ViewBag.TargaId" editType="dropdownedit" edit="new {@params = DropDownListSubCategory }"></e-grid-column>
+        <e-grid-column field="FuelId" foreignKeyField="FuelId" headerText="የነዳጅ አይነት" foreignKeyValue="FuelName" dataSource="ViewBag.FuelId" editType="dropdownedit" edit="new {@params = DropDownListMeasurementUnits }"></e-grid-column>
+        <e-grid-column field="DriverId" foreignKeyField="DriverId" headerText="የሹፌሩ ስም" foreignKeyValue="DriverName" dataSource="ViewBag.DriverId" editType="dropdownedit" edit="new {@params = DropDownListMeasurementUnit }"></e-grid-column>
+        <e-grid-column field="RegisteredDate" headerText="የተመዘገበበት ቀን" editType="datepickeredit" format="yMd"></e-grid-column>
+
+
+    </e-grid-columns>
+
+
+</ejs-grid>
+@*<ejs-textbox id="firstname" name="firstname" placeholder="First Name"></ejs-textbox>
+<ejs-button id="clear" cssClass="e-flat" content="Clear"></ejs-button>*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+function toolbarClick(args)
+{
+  if (args.item.id === this.element.id+'_pdfexport')
+  {
+    this.pdfExport();
+  }
+   if (args.item.id === this.element.id+'_csvexport') 
+   {
+    this.csvExport();
+   }
+  if (args.item.id === this.element.id + '_excelexport')
+  {
+    this.excelExport();
+  }
+}
+</script>
+<script type="text/javascript">
+    function created(args) {
+        // extending the default UrlAdaptor
+        class CustomAdaptor extends ej.data.UrlAdaptor {
+            processResponse(data, ds, query, xhr, request, changes) {
+                if (!ej.base.isNullOrUndefined(data.message)) {
+                    alert(data.message);
+                }
+                if (!ej.base.isNullOrUndefined(data.data))
+                    return data.data;
+                else
+                    return data;
+            }
+        }
+        var grid = document.querySelector('#Grid').ej2_instances[0];
+        grid.dataSource = new ej.data.DataManager({
+            url: "/Generals/UrlDatasource",
+            insertUrl: "/Generals/Insert",
+            updateUrl: "/Generals/Update",
+            removeUrl: "/Generals/Remove",
+            adaptor: new CustomAdaptor()
+        });
+    }
+</script>
+

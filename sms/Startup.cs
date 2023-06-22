@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using sms.Models;
 using AutoMapper;
 using sms.Handler;
+//using sms.Hubs;
 
 namespace sms
 {
@@ -34,11 +35,15 @@ namespace sms
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-			services.AddControllers().AddNewtonsoftJson(opt => {
+           
+            services.AddMvc()
+        .AddSessionStateTempDataProvider();
+            services.AddSession();
+            services.AddControllers().AddNewtonsoftJson(opt => {
 				opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 			});
 			services.AddControllers().AddNewtonsoftJson(options => {
+                //options.SerializerSettings.ContractResolver = null;
               options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
             });
             services.AddScoped<ApplicationDbContext>();
@@ -57,7 +62,7 @@ namespace sms
                   Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddControllersWithViews();
-
+           // services.AddSignalR();
             //To make login default
             //services.AddMvc().AddRazorPagesOptions(options =>
             //{
@@ -79,6 +84,7 @@ namespace sms
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSession();
             //Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Mgo+DSMBMAY9C3t2VVhkQlFadVdJXGFWfVJpTGpQdk5xdV9DaVZUTWY/P1ZhSXxQdkRiWn9fcHRQRGJVVEI=");
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("ORg4AjUWIQA/Gnt2VVhkQlFadVdJXGFWfVJpTGpQdk5xdV9DaVZUTWY/P1ZhSXxQdkFhWX9acnxQR2VeUkM=");
             if (env.IsDevelopment())
@@ -106,6 +112,8 @@ namespace sms
                     name: "default",
                     pattern: "{controller=Dashboard}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+
+               // endpoints.MapHub<ChatHub>("/chat");
             });
             if (Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), @"node_modules", @"@syncfusion")))
             {

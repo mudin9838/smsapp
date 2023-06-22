@@ -89,7 +89,7 @@ namespace sms.Controllers
             value.Value.User= user;
             _context.Add(value.Value);
             _context.SaveChanges();
-            string msg = value.Value.Quantity + " " + value.Value.Model + "" + " በትክክል መዝግበዋል!!";   //Message from server 
+            string msg = value.Value.Quantity + " " + "" + " በትክክል መዝግበዋል!!";   //Message from server 
             return Json(new { data = value, message = msg });
 
         }

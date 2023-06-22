@@ -105,7 +105,7 @@ namespace sms.Controllers
                     return Json(new { data = value, message = msgs });
                 }
             }
-            string msg = value.Value.Quantity +" " +value.Value.Stock.Model +""+ "ወጪ አድርገዋል!!";   //Message from server 
+            string msg = value.Value.Quantity +" " +value.Value.Stock.SubCategory.SubCategoryName +""+ "ወጪ አድርገዋል!!";   //Message from server 
             return Json(new { data = value, message = msg });
         }
 

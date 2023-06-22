@@ -22,7 +22,6 @@ namespace sms.Models
         public int CategoryId { get; set; }
         public int SubCategoryId { get; set; }
 
-        public string Model { get; set; }
         public int MeasurementUnitId { get; set; }
         public int Quantity { get; set; }
         public decimal EachPrice { get; set; }

@@ -1,0 +1,105 @@
+﻿@model sms.Models.Service
+
+@using Syncfusion.EJ2
+
+<div>
+    <form asp-action="Create" asp-controller="Services">
+        <div class="form-row">
+
+            <div class="form-group col-md-3">
+                <ejs-dropdownlist id="ParentId" dataSource="@ViewBag.ParentId" placeholder=" /ቅፅ/ቤት" floatLabelType="Always" popupHeight="300px">
+                    <e-dropdownlist-fields text="ParentName" foreignKeyValue="ParentName" value="ParentId"></e-dropdownlist-fields>
+                </ejs-dropdownlist>
+            </div>
+
+            <div class="form-group col-md-3">
+                <ejs-dropdownlist id="GarageId" dataSource="@ViewBag.GarageId" placeholder="ጋራዥ" floatLabelType="Always" popupHeight="300px" allowFiltering="true">
+                    <e-dropdownlist-fields text="GarageName" value="GarageId"></e-dropdownlist-fields>
+                </ejs-dropdownlist>
+            </div>
+            <div class="form-group col-md-3">
+                <ejs-dropdownlist id="ReplacementId" dataSource="@ViewBag.ReplacementId" placeholder="የተቀየሩ  ዓይነቶች" floatLabelType="Always" popupHeight="300px">
+                    <e-dropdownlist-fields text="ReplacementName" value="ReplacementId"></e-dropdownlist-fields>
+                </ejs-dropdownlist>
+            </div>
+         @*   <div class="form-group col-md-3">
+                <ejs-dropdownlist id="GeneralId" dataSource="@ViewBag.GeneralId" placeholder="የሰሌዳ ኮድ" floatLabelType="Always" popupHeight="300px">
+                    <e-dropdownlist-fields text="GeneralId" foreignKeyValue="GeneralId" value="GeneralId"></e-dropdownlist-fields>
+                </ejs-dropdownlist>
+            </div>*@
+
+        </div>
+
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <div class="e-float-input e-control-wrapper">
+                    <input id="Measurement" asp-for="Measurement" type='text' />
+                    <span class="e-float-line"></span>
+                    <label asp-for="Measurement" class="e-float-text e-label-top">መለኪያ</label>
+                </div>
+            </div>
+
+            <div class="form-group col-md-3">
+                <div class="e-float-input e-control-wrapper">
+                    <input id="EachPrice" asp-for="EachPrice" type='text' onkeyup="changeValues()" />
+                    <span class="e-float-line"></span>
+                    <label asp-for="EachPrice" class="e-float-text e-label-top">ዋጋ</label>
+                </div>
+            </div>
+           
+            <div class="form-group col-md-3">
+                <div class="e-float-input e-control-wrapper">
+                    <input id="Vat" asp-for="Vat" type='text' onkeyup="changeValue()" />
+                    <span class="e-float-line"></span>
+                    <label asp-for="Vat" class="e-float-text e-label-top">VAT(15.00%)</label>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <div class="e-float-input e-control-wrapper">
+                    <input id="TotalPrice" asp-for="TotalPrice" type='text' />
+                    <span class="e-float-line"></span>
+                    <label asp-for="TotalPrice" class="e-float-text e-label-top">ጠቅላላ  ዋጋ</label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <div class="e-float-input e-control-wrapper">
+                    <input id="km" asp-for="km" type='text' />
+                    <span class="e-float-line"></span>
+                    <label asp-for="km" class="e-float-text e-label-top">ኪ/ሜትር</label>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <div class="e-float-input e-control-wrapper">
+                    <input id="Kmnext" asp-for="Kmnext" type='text'/>
+                    <span class="e-float-line"></span>
+                    <label asp-for="Kmnext" class="e-float-text e-label-top">ቀጣይ  ኪ.ሜ</label>
+                </div>
+            </div>
+
+
+        </div>
+     
+
+
+
+        <div class="form-row">
+  
+            <div class="form-group col-md-6">
+                <ejs-datetimepicker serverTimezoneOffset="7.0" id="RegisteredDate" placeholder="የተመዘገበበት ቀን" floatLabelType="Always"></ejs-datetimepicker>
+
+            </div>
+
+        </div>
+      
+
+
+    </form>
+   
+</div>
+
+<ejs-scripts></ejs-scripts>

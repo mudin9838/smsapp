@@ -1,0 +1,150 @@
+﻿@model sms.Models.Litre
+
+@using Syncfusion.EJ2
+
+<div>
+    <form asp-action="Create" asp-controller="Litres1">
+        <div class="form-row">
+
+            <div class="form-group col-md-3">
+                <ejs-dropdownlist id="ParentId" dataSource="@ViewBag.ParentId" placeholder=" /ቅፅ/ቤት" floatLabelType="Always" popupHeight="300px">
+                    <e-dropdownlist-fields text="ParentName" foreignKeyValue="ParentName" value="ParentId"></e-dropdownlist-fields>
+                </ejs-dropdownlist>
+            </div>
+
+            <div class="form-group col-md-3">
+                <ejs-dropdownlist id="YearId" change="countrychange" dataSource="@ViewBag.YearId" placeholder="ዓ/ምህረት" floatLabelType="Always" popupHeight="300px" allowFiltering="true">
+                    <e-dropdownlist-fields text="YearName" value="YearId"></e-dropdownlist-fields>
+                </ejs-dropdownlist>
+            </div>
+            <div class="form-group col-md-3">
+                <ejs-dropdownlist enabled="false" id="MonthId" dataSource="@ViewBag.MonthId" placeholder="ወር ይምረጡ" floatLabelType="Always" popupHeight="300px">
+                    <e-dropdownlist-fields text="MonthName" value="MonthId"></e-dropdownlist-fields>
+                </ejs-dropdownlist>
+            </div>
+            <div class="form-group col-md-3">
+                <ejs-dropdownlist id="GeneralId" dataSource="@ViewBag.GeneralId" placeholder="የሰሌዳ ቁጥር" floatLabelType="Always" popupHeight="300px">
+                    <e-dropdownlist-fields text="GeneralId" foreignKeyValue="GeneralId" value="GeneralId"></e-dropdownlist-fields>
+                </ejs-dropdownlist>
+            </div>
+
+        </div>
+
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <div class="e-float-input e-control-wrapper">
+                    <input asp-for="Birr" type='text' />
+                    <span class="e-float-line"></span>
+                    <label asp-for="Birr" class="e-float-text e-label-top">እንዲሞላ የተጠየቀው ነዳጅ በብር</label>
+                </div>
+            </div>
+
+            <div class="form-group col-md-3">
+                <div class="e-float-input e-control-wrapper">
+                    <input id="Litre1" asp-for="Litre1" type='text' />
+                    <span class="e-float-line"></span>
+                    <label asp-for="Litre1" class="e-float-text e-label-top">እንዲሞላ የተጠየቀው ነዳጅ በሊትር</label>
+                </div>
+            </div>
+           
+            <div class="form-group col-md-3">
+                <div class="e-float-input e-control-wrapper">
+                    <input id="Awaited" asp-for="Awaited" type='text' onkeyup="changeValue()" />
+                    <span class="e-float-line"></span>
+                    <label asp-for="Awaited" class="e-float-text e-label-top">ከመጠባበቅያ ካርድ የተቀዳ ነዳጅ በሊትር</label>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <div class="e-float-input e-control-wrapper">
+                    <input id="Totallitre" asp-for="Totallitre" type='text' />
+                    <span class="e-float-line"></span>
+                    <label asp-for="Totallitre" class="e-float-text e-label-top">ጠቅላላ ድምር የተቀዳ ነዳጅ በሊትር</label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <div class="e-float-input e-control-wrapper">
+                    <input id="Startkm" asp-for="Startkm" type='text' />
+                    <span class="e-float-line"></span>
+                    <label asp-for="Startkm" class="e-float-text e-label-top">በመነሻ ቦታ የነበረ ኪ/ሜት</label>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <div class="e-float-input e-control-wrapper">
+                    <input id="Endkm" asp-for="Endkm" type='text' onkeyup="changeValued()" />
+                    <span class="e-float-line"></span>
+                    <label asp-for="Endkm" class="e-float-text e-label-top">መድረሻ ኪ/ሜትር</label>
+                </div>
+            </div>
+
+            <div class="form-group col-md-3">
+                <div class="e-float-input e-control-wrapper">
+                    <input id="Differencekm" asp-for="Differencekm" type='text' />
+                    <span class="e-float-line"></span>
+                    <label asp-for="Differencekm" class="e-float-text e-label-top">ኪ.ሜትር ልዩነት</label>
+                </div>
+            </div>
+         
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <div class="e-float-input e-control-wrapper">
+                    <input id="Litreused" asp-for="Litreused" type='text' />
+                    <span class="e-float-line"></span>
+                    <label asp-for="Litreused" class="e-float-text e-label-top">የተቀዳ ነዳጅ በሊትር</label>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <div class="e-float-input e-control-wrapper">
+                    <input id="Birrused" asp-for="Birrused" type='text' onkeyup="changeValues()" />
+                    <span class="e-float-line"></span>
+                    <label asp-for="Birrused" class="e-float-text e-label-top">የተቀዳ ነዳጅ በብር</label>
+                </div>
+            </div>
+
+
+
+            <div class="form-group col-md-3">
+                <div class="e-float-input e-control-wrapper">
+                    <input id="Litreremain" asp-for="Litreremain" type='text' />
+                    <span class="e-float-line"></span>
+                    <label asp-for="Litreremain" class="e-float-text e-label-top">ቀሪ ነዳጅ በሊትር</label>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <div class="e-float-input e-control-wrapper">
+                    <input id="Birrremain" asp-for="Birrremain" type='text' />
+                    <span class="e-float-line"></span>
+                    <label asp-for="Birrremain" class="e-float-text e-label-top">ቀሪ ነዳጅ በብር</label>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <div class="e-float-input e-control-wrapper">
+                    <input id="Description" asp-for="Description" type='text' />
+                    <span class="e-float-line"></span>
+                    <label asp-for="Description" class="e-float-text e-label-top">ምርመራ</label>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <ejs-datetimepicker serverTimezoneOffset="7.0" id="RegisteredDate" placeholder="የተመዘገበበት ቀን" floatLabelType="Always"></ejs-datetimepicker>
+
+            </div>
+
+        </div>
+      
+
+
+    </form>
+   
+</div>
+
+<ejs-scripts></ejs-scripts>

@@ -1,0 +1,282 @@
+﻿@{
+    ViewData["Title"] = "DataGrids";
+}
+
+@{
+    var DropDownListParent = new Syncfusion.EJ2.DropDowns.DropDownList() { DataSource = ViewBag.ParentId, Query = "new ej.data.Query()", Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "ParentId", Text = "ParentName" } };
+    var DropDownListDepartment = new Syncfusion.EJ2.DropDowns.DropDownList() { DataSource = ViewBag.YearId, Query = "new ej.data.Query()", Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "YearId", Text = "YearName" } };
+    var DropDownListEmployee = new Syncfusion.EJ2.DropDowns.DropDownList() { DataSource = ViewBag.MonthId, Query = "new ej.data.Query()", Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "MonthId", Text = "MonthName" } };
+    var DropDownListCategory = new Syncfusion.EJ2.DropDowns.DropDownList() { DataSource = ViewBag.CarId, Query = "new ej.data.Query()", Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "CarId", Text = "CarName" } };
+    var DropDownListSubCategory = new Syncfusion.EJ2.DropDowns.DropDownList() { DataSource = ViewBag.TargaId, Query = "new ej.data.Query()", Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "TargaId", Text = "TargaName" } };
+    var DropDownListMeasurementUnit = new Syncfusion.EJ2.DropDowns.DropDownList() { DataSource = ViewBag.DriverId, Query = "new ej.data.Query()", Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "DriverId", Text = "DriverName" } };
+    var DropDownListMeasurementUnits = new Syncfusion.EJ2.DropDowns.DropDownList() { DataSource = ViewBag.FuelId, Query = "new ej.data.Query()", Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "FuelId", Text = "FuelName" } };
+    var DropDownListStock = new Syncfusion.EJ2.DropDowns.DropDownList() { DataSource = ViewBag.GeneralId, Query = "new ej.data.Query()", Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "GeneralId", Text = "GeneralId" } };
+
+
+    var data = new Syncfusion.EJ2.DataManager()
+            {
+                Url = "/DataGrids/UrlDatasource1",
+                InsertUrl = "/DataGrids/CellEditInsert",
+                UpdateUrl = "/DataGrids/CellEditUpdate",
+                RemoveUrl = "/DataGrids/CellEditDelete",
+                Adaptor = "UrlAdaptor",
+            };
+
+
+    var ChildGrid = new Syncfusion.EJ2.Grids.Grid()
+            {
+                DataSource = data,
+                QueryString = "GeneralId",
+                DetailTemplate = "#detailtemplate",
+                ActionComplete = "actionComplete",
+                EditSettings = new Syncfusion.EJ2.Grids.GridEditSettings() { AllowAdding = true, AllowEditing = true, AllowDeleting = true, ShowConfirmDialog = true, ShowDeleteConfirmDialog = true, Mode = Syncfusion.EJ2.Grids.EditMode.Dialog, Template = "#dialogtemplate" },
+                FilterSettings = new Syncfusion.EJ2.Grids.GridFilterSettings() {Type = Syncfusion.EJ2.Grids.FilterType.Menu},
+
+                AllowPaging = true,
+                AllowFiltering = true,
+                
+                AllowGrouping = true,
+                AllowResizing = true,
+                AllowReordering = true,
+                ToolbarClick = "toolbarClick",
+                Toolbar = new List<string>() { "Search", "Add", "Edit", "Delete", "Update", "Cancel" },
+                Columns = new List<Syncfusion.EJ2.Grids.GridColumn> {
+        new Syncfusion.EJ2.Grids.GridColumn(){Type="checkbox", Width="50"},
+        new Syncfusion.EJ2.Grids.GridColumn(){ Field="LitreId", HeaderText="LitreId",IsPrimaryKey=true,AllowEditing = false, IsIdentity=true, Width="120",Visible=true },
+  
+        new Syncfusion.EJ2.Grids.GridColumn(){ Field="ParentId", HeaderText="ቅ/ፅ/ቤት",ForeignKeyValue="ParentName",ForeignKeyField="ParentId",DataSource=ViewBag.ParentId,Visible=true,Edit= (new
+                                               {
+                                              @params = DropDownListParent
+                                               }),  EditType="dropdownedit", Width="100"},
+                                                     new Syncfusion.EJ2.Grids.GridColumn(){ Field="GeneralId", HeaderText="የሰሌዳ ኮድ",ForeignKeyValue="GeneralId",ForeignKeyField="GeneralId",DataSource=ViewBag.GeneralId,Edit= (new
+                                               {
+                                              @params = DropDownListStock
+                                               }),  EditType="dropdownedit", Width="100"},
+      
+        new Syncfusion.EJ2.Grids.GridColumn(){ Field="YearId", HeaderText="አ/ም",ForeignKeyValue="YearName",ForeignKeyField="YearId",DataSource=ViewBag.YearId,Edit= (new
+                                           {
+                                          @params = DropDownListDepartment
+                                           }),  EditType="dropdownedit", Width="100"},
+       new Syncfusion.EJ2.Grids.GridColumn(){ Field="MonthId", HeaderText="ወር",ForeignKeyValue="MonthName",ForeignKeyField="MonthId",DataSource=ViewBag.MonthId,Edit= (new
+                                           {
+                                              @params = DropDownListEmployee
+                                               }),  EditType="dropdownedit", Width="100"},
+        new Syncfusion.EJ2.Grids.GridColumn(){ Field="Birr", HeaderText="Birr", Width="120" },
+        new Syncfusion.EJ2.Grids.GridColumn(){ Field="Litre1", HeaderText="Litre1", Width="120" },
+        new Syncfusion.EJ2.Grids.GridColumn(){ Field="Awaited", HeaderText="Awaited", Width="120" },
+        new Syncfusion.EJ2.Grids.GridColumn(){ Field="Totallitre", HeaderText="Totallitre", Width="120" },
+        new Syncfusion.EJ2.Grids.GridColumn(){ Field="Startkm", HeaderText="Startkm", Width="120" },
+        new Syncfusion.EJ2.Grids.GridColumn(){ Field="Endkm", HeaderText="Endkm", Width="120" },
+        new Syncfusion.EJ2.Grids.GridColumn(){ Field="Differencekm", HeaderText="Differencekm", Width="120" },
+        new Syncfusion.EJ2.Grids.GridColumn(){ Field="Litreused", HeaderText="Litreused", Width="120" },
+        new Syncfusion.EJ2.Grids.GridColumn(){ Field="Birrused", HeaderText="Birrused", Width="120" },
+        new Syncfusion.EJ2.Grids.GridColumn(){ Field="Litreremain", HeaderText="Litreremain", Width="120" },
+        new Syncfusion.EJ2.Grids.GridColumn(){ Field="Litreremain", HeaderText="Litreremain", Width="120" },
+        new Syncfusion.EJ2.Grids.GridColumn(){ Field="Description", HeaderText="Description", Width="120" },
+        new Syncfusion.EJ2.Grids.GridColumn(){ Field="RegisteredDate", HeaderText="የተመዘገበበት ቀን", Width="120",Format="dd-MMM-yyyy HH:mm",EditType="datepickeredit" }
+
+},
+            };
+}
+
+<div class="control-section">
+    <ejs-grid id="ParentGrid" detailDataBound="detailDataBound" allowPaging="true" hierarchyPrintMode="All" dataSource="@ViewBag.DataSource" childGrid="ChildGrid" allowFiltering="true" toolbar="@(new List<string>() { "Search", "Add" , "Edit" , "Delete" , "Update" , "Cancel" , "ExcelExport" , "CsvExport" , "PdfExport","Print"})" allowPdfExport="true" allowExcelExport="true" toolbarClick="toolbarClick">
+        <e-data-manager url="/DataGrids/UrlDataSource" adaptor="UrlAdaptor" insertUrl="/DataGrids/EditInsert" updateUrl="/DataGrids/EditUpdate" removeUrl="/DataGrids/EditDelete"></e-data-manager>
+        <e-grid-filterSettings type="Menu"></e-grid-filterSettings>
+        <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Dialog" showConfirmDialog="true" showDeleteConfirmDialog="true"></e-grid-editSettings>
+        <e-grid-selectionsettings type="Single"></e-grid-selectionsettings>
+        <e-grid-columns>
+            <e-grid-column type="checkbox" width="50"></e-grid-column>
+            <e-grid-column field="GeneralId" headerText="GeneralId" isPrimaryKey="true" isIdentity="true" visible="true" width="50"></e-grid-column>
+            <e-grid-column field="ParentId" foreignKeyField="ParentId" headerText="ቅ/ፅ/ቤት" foreignKeyValue="ParentName" dataSource="ViewBag.ParentId" editType="dropdownedit" edit="new {@params = DropDownListParent }"></e-grid-column>
+            <e-grid-column field="CarId" foreignKeyField="CarId" headerText="የተሽከርካሪ አይነት" foreignKeyValue="CarName" dataSource="ViewBag.CarId" editType="dropdownedit" edit="new {@params = DropDownListCategory }"></e-grid-column>
+            <e-grid-column field="TargaId" foreignKeyField="TargaId" headerText="የሰሌዳ ቁጥር" foreignKeyValue="TargaName" dataSource="ViewBag.TargaId" editType="dropdownedit" edit="new {@params = DropDownListSubCategory }"></e-grid-column>
+          <e-grid-column field="FuelId" foreignKeyField="FuelId" headerText="የነዳጅ አይነት" foreignKeyValue="FuelName" dataSource="ViewBag.FuelId" editType="dropdownedit" edit="new {@params = DropDownListMeasurementUnits }"></e-grid-column>
+            <e-grid-column field="DriverId" foreignKeyField="DriverId" headerText="የሹፌሩ ስም" foreignKeyValue="DriverName" dataSource="ViewBag.DriverId" editType="dropdownedit" edit="new {@params = DropDownListMeasurementUnit }"></e-grid-column>
+            <e-grid-column field="RegisteredDate" headerText="የተመዘገበበት ቀን" editType="datepickeredit" format="yMd"></e-grid-column>
+        </e-grid-columns>
+    </ejs-grid>
+</div>
+<script>
+    function toolbarClick(args) {
+        if (args.item.text === 'PDF Export') {
+            this.pdfExport({ hierarchyExportMode: "All" });
+        }
+        if (args.item.text === 'Excel Export') {
+            this.excelExport({ hierarchyExportMode: "All" });
+        }
+    }
+</script>
+
+
+<script id='dialogtemplate' type="text/x-template">
+    <div id="dialogTemp">
+    </div>
+</script>
+
+<script>
+    //function actionBeginChild(args) {
+
+    //    if (args.requestType === "add") {
+    //        // `parentKeyFieldValue` refers to the queryString field value of the parent record.
+    //        args.data.GeneralId = this.parentDetails.parentKeyFieldValue;
+    //    }
+    //}
+    function actionComplete(args) {
+
+        if (args.requestType === 'beginEdit' || args.requestType === 'add') {
+            let spinner = ej.popups.createSpinner({ target: args.dialog.element });
+            ej.popups.showSpinner(args.dialog.element);
+            if (args.requestType === 'beginEdit') {
+                var ajax = new ej.base.Ajax({
+                    url: "@Url.Action("EditPartial", "DataGrids")", //render the partial view
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({ value: args.rowData })
+                });
+                ajax.send().then(function (data) {
+                    appendElement(data, args.form); //Render the edit form with selected record
+                    args.form.elements.namedItem('LitreId').focus();
+                    ej.popups.hideSpinner(args.dialog.element);
+
+                }).catch(function (xhr) {
+                    console.log(xhr);
+                    ej.popups.hideSpinner(args.dialog.element);
+                });
+
+            }
+            if (args.requestType === 'add') {
+                var ajax = new ej.base.Ajax({
+                    url: "@Url.Action("AddPartial", "DataGrids")", //render the partial view
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({ value: args.rowData })
+
+                });
+                ajax.send().then(function (data) {
+                    appendElement(data, args.form); //Render the edit form with selected record
+                    args.form.elements.namedItem('LitreId').focus();
+                    ej.popups.hideSpinner(args.dialog.element);
+                }).catch(function (xhr) {
+                    console.log(xhr);
+                    ej.popups.hideSpinner(args.dialog.element);
+                });
+             }
+
+        }
+
+
+    }
+
+
+
+    function appendElement(elementString, form) {
+        form.querySelector("#dialogTemp").innerHTML = elementString;
+        //form.ej2_instances[0].addRules('CustomerId', {required: true, number: true });
+        //form.ej2_instances[0].addRules('ParentId', {required: true });
+
+        //form.ej2_instances[0].addRules('Quantity', { required: true });
+       // form.ej2_instances[0].addRules('RegisteredDate', { required: true });
+        form.ej2_instances[0].refresh();  // refresh method of the formObj
+        var script = document.createElement('script');
+        script.type = "text/javascript";
+        var serverScript = form.querySelector("#dialogTemp").querySelector('script');
+        script.textContent = serverScript.innerHTML;
+        document.head.appendChild(script);
+        serverScript.remove();
+    }
+
+
+</script>
+<script type="text/javascript">
+
+    class CustomAdaptor extends ej.data.UrlAdaptor {
+
+        processResponse(data, ds, query, xhr, request, changes) {
+
+            if (!ej.base.isNullOrUndefined(data.message)) {
+
+                alert(data.message);
+
+            }
+
+            if (!ej.base.isNullOrUndefined(data.data))
+
+                return data.data;
+
+            else
+
+                return data;
+
+        }
+
+    }
+
+    function detailDataBound(args) {
+        args.childGrid.columns[3].defaultValue = args.childGrid.parentDetails.parentKeyFieldValue;
+        args.childGrid.dataSource = new ej.data.DataManager({
+
+            url: "/DataGrids/UrlDatasource1",
+
+            insertUrl: "/DataGrids/CellEditInsert",
+
+            updateUrl: "/DataGrids/CellEditUpdate",
+
+            removeUrl: "/DataGrids/CellEditDelete",
+
+            adaptor: new CustomAdaptor()
+
+        });
+
+    }
+
+</script>
+@*<script type="text/javascript">
+    function created(args) {
+        // extending the default UrlAdaptor
+        class CustomAdaptor extends ej.data.UrlAdaptor {
+            processResponse(data, ds, query, xhr, request, changes) {
+                if (!ej.base.isNullOrUndefined(data.message)) {
+                    alert(data.message);
+                }
+                if (!ej.base.isNullOrUndefined(data.data))
+                    return data.data;
+                else
+                    return data;
+            }
+        }
+         var grid = document.querySelector('#Grid').ej2_instances[0];
+        grid.dataSource = new ej.data.DataManager({
+            url: "/DataGrids/UrlDatasource1",
+            insertUrl: "/DataGrids/CellEditInsert",
+            updateUrl: "/DataGrids/CellEditUpdate",
+            removeUrl: "/DataGrids/CellEditDelete",
+            adaptor: new CustomAdaptor()
+        });
+
+
+    }
+</script>*@
+<script>
+    function countrychange() {
+        // disable the state DropDownList
+        var state = document.getElementById('MonthId').ej2_instances[0];
+        //var city = document.getElementById('MeasurementUnitId').ej2_instances[0];
+        var country = document.getElementById('YearId').ej2_instances[0];
+        state.enabled = true;
+        //frame the query based on selected value in country DropDownList.
+        var tempQuery = new ej.data.Query().where('YearId', 'equal', country.value);
+        // set the framed query based on selected value in country DropDownList.
+        state.query = tempQuery;
+        // set null value to state DropDownList text property
+        state.text = null;
+        //  bind the property changes to state DropDownList
+        state.dataBind();
+        // set null value to city DropDownList text property
+        // city.text = null;
+        // disable the city DropDownList
+        //city.enabled = false;
+        // bind the property changes to City DropDownList
+        // city.dataBind();
+    }
+</script>

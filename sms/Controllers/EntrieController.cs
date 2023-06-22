@@ -87,9 +87,9 @@ namespace sms.Controllers
             
             StockItem item = _context.StockItems.Find(value.Value.StockId);
             item.Quantity = item.Quantity + value.Value.Quantity;
-            item.EachPrice =  value.Value.EachPrice;
-            item.Vat = vatValue;
-            item.TotalPrice = totalPriceWithVat;
+            //item.EachPrice =  value.Value.EachPrice;
+            //item.Vat = vatValue;
+            //item.TotalPrice = totalPriceWithVat;
             
             _context.Entry(item).State = EntityState.Modified; // I want updated result 
                                                                //do stuff
@@ -97,7 +97,7 @@ namespace sms.Controllers
             value.Value.User = user;
             _context.Add(value.Value);
             _context.SaveChanges(); //on save both changes(including modified) also will be saved
-            string msg = value.Value.Quantity + " " + value.Value.Stock.Model + "" + "ገቢ አድርገዋል!!";   //Message from server 
+            string msg = value.Value.Quantity + " " + value.Value.Stock.SubCategory.SubCategoryName + "" + "ገቢ አድርገዋል!!";   //Message from server 
             return Json(new { data = value, message = msg });
 
         }
