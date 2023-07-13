@@ -11,13 +11,7 @@ namespace sms.Controllers
   [Authorize]
     public class DashboardController : Controller
     {
-        //private ApplicationDbContext _context;
-
-        //public DashboardController(ApplicationDbContext Context)
-        //{
-        //    this._context = Context;
-        //}
-
+       
         public IActionResult Index()
         {
            
