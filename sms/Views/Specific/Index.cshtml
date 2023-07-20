@@ -1,0 +1,32 @@
+﻿@{
+    var DropDownListDepartment = new Syncfusion.EJ2.DropDowns.DropDownList() { DataSource = ViewBag.CategoryId, Query = "new ej.data.Query()", Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "CategoryId", Text = "CategoryName" } };
+    var DropDownListEmployee = new Syncfusion.EJ2.DropDowns.DropDownList() { DataSource = ViewBag.SubCategoryId, Query = "new ej.data.Query()", Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "SubCategoryId", Text = "SubCategoryName" } };
+
+}
+
+<ejs-grid id="Grid" allowPaging="true" allowSorting="true" allowResizing="true" allowReordering="true" allowGrouping="true" toolbar="@(new List<string>() { "Search", "Add", "Edit", "Delete","Update","Cancel" , "ExcelExport" , "CsvExport" ,"PdfExport"})" allowFiltering="true" allowSelection="true" allowExcelExport="true" allowPdfExport="true" toolbarClick="toolbarClick">
+    <e-data-manager url="/Specific/UrlDataSource" adaptor="UrlAdaptor" insertUrl="/Specific/Insert" updateUrl="/Specific/Update" removeUrl="/Specific/Delete"></e-data-manager>
+    <e-grid-filterSettings type="Menu"></e-grid-filterSettings>
+    <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Dialog"></e-grid-editSettings>
+    <e-grid-selectionsettings type="Single"></e-grid-selectionsettings>
+    <e-grid-columns>
+        <e-grid-column type="checkbox" width="50"></e-grid-column>
+        <e-grid-column field="SubCategoryId" headerText="SubCategoryId" isPrimaryKey="true" isIdentity="true"></e-grid-column>
+        <e-grid-column field="CategoryId" foreignKeyField="CategoryId" headerText="የእቃው መደብ" foreignKeyValue="CategoryName" dataSource="ViewBag.CategoryId" editType="dropdownedit" edit="new {@params = DropDownListDepartment }"></e-grid-column>
+        <e-grid-column field="SubCategoryId" foreignKeyField="SubCategoryId" headerText="የእቃው አይነት" foreignKeyField="SubCategoryId" foreignKeyValue="SubCategoryName" editType="text" dataSource="ViewBag.SubCategoryId"></e-grid-column>
+    </e-grid-columns>
+</ejs-grid>
+
+<script>
+    function toolbarClick(args) {
+        if (args.item.id === this.element.id + '_pdfexport') {
+            this.pdfExport();
+        }
+        if (args.item.id === this.element.id + '_csvexport') {
+            this.csvExport();
+        }
+        if (args.item.id === this.element.id + '_excelexport') {
+            this.excelExport();
+        }
+    }
+</script>

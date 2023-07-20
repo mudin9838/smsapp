@@ -1,0 +1,41 @@
+﻿@model IEnumerable<sms.Models.MeasurementUnit>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<p>
+    <a asp-action="Create">አዲስ መዝግብ</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MeasurementUnitName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubCategory)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MeasurementUnitName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubCategory.SubCategoryName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MeasurementUnitId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MeasurementUnitId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MeasurementUnitId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

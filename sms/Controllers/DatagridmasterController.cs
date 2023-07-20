@@ -44,8 +44,8 @@ namespace sms.Controllers
             ViewBag.EmployeeId = _context.Employees.ToList();
             ViewBag.StatusId = _context.Statuses.ToList();
             ViewBag.StockId = _context.StockItems.ToList();
-            ViewBag.outdataSource = _context.Outs.Where(x => x.StatusdelId == 1 && x.ParentId == siteid && x.User.Id == user.Id).ToList();
-            ViewBag.dataSource = _context.StockItems.Where(x => x.StatusdelId == 1 && x.ParentId == siteid && x.User.Id == user.Id).ToList();
+            ViewBag.outdataSource = _context.Outs.Where(x => x.StatusdelId == 1 && x.ParentId == siteid).ToList();
+            ViewBag.dataSource = _context.StockItems.Where(x => x.StatusdelId == 1 && x.ParentId == siteid).ToList();
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace sms.Controllers
             ViewBag.CategoryId = _context.Categories.ToList();
             ViewBag.SubCategoryId = _context.SubCategories.ToList();
             ViewBag.MeasurementUnitId = _context.MeasurementUnits.ToList();
-            ViewBag.dataSource = _context.StockItems.Where(x => x.StatusdelId == 1 && x.ParentId == siteid && x.User.Id == user.Id).ToList();
+            ViewBag.dataSource = _context.StockItems.Where(x => x.StatusdelId == 1 && x.ParentId == siteid).ToList();
             return PartialView("_DialogAddPartial", value.Value);
         }
         public async Task<IActionResult> UrlDatasource([FromBody] DataManagerRequest dm)
@@ -67,7 +67,7 @@ namespace sms.Controllers
             var user = await _userManager.GetUserAsync(HttpContext.User);
 
             var siteid = user.ParentId;
-            IEnumerable DataSource = _context.StockItems.Where(x => x.StatusdelId == 1 && x.ParentId == siteid && x.User.Id == user.Id).ToList();
+            IEnumerable DataSource = _context.StockItems.Where(x => x.StatusdelId == 1 && x.ParentId == siteid).ToList();
 
             DataOperations operation = new DataOperations();
             if (dm.Where != null && dm.Where.Count > 0) //Filtering
@@ -97,6 +97,8 @@ namespace sms.Controllers
             return Json(new { data = value, message = msg });
 
         }
+        [Authorize(Roles = "SuperAdmin")]
+
         public async Task<IActionResult> EditPartial([FromBody] CRUDModel<StockItem> value)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
@@ -106,7 +108,7 @@ namespace sms.Controllers
             ViewBag.CategoryId = _context.Categories.ToList();
             ViewBag.SubCategoryId = _context.SubCategories.ToList();
             ViewBag.MeasurementUnitId = _context.MeasurementUnits.ToList();
-            ViewBag.dataSource = _context.StockItems.Where(x => x.ParentId == siteid && x.User.Id == user.Id).ToList();
+            ViewBag.dataSource = _context.StockItems.Where(x => x.ParentId == siteid).ToList();
             return PartialView("_DialogEditPartial", value.Value);
         }
         public ActionResult Update([FromBody] CRUDModel<StockItem> value)
@@ -163,7 +165,7 @@ namespace sms.Controllers
             ViewBag.EmployeeId = _context.Employees.ToList();
             ViewBag.StockId = _context.StockItems.Where(x => x.User.Id == user.Id).ToList();
             ViewBag.StatusId = _context.Statuses.ToList();
-            ViewBag.dataSource = _context.Outs.Where(x => x.StatusdelId == 1 && x.ParentId == siteid && x.User.Id == user.Id).ToList();
+            ViewBag.dataSource = _context.Outs.Where(x => x.StatusdelId == 1 && x.ParentId == siteid).ToList();
 
             return PartialView("_DialogAddPartial1", value.Value);
         }
@@ -172,7 +174,7 @@ namespace sms.Controllers
             var user = await _userManager.GetUserAsync(HttpContext.User);
 
             var siteid = user.ParentId;
-            IEnumerable DataSource = _context.Outs.Where(x => x.StatusdelId == 1 && x.ParentId == siteid && x.User.Id == user.Id).ToList();
+            IEnumerable DataSource = _context.Outs.Where(x => x.StatusdelId == 1 && x.ParentId == siteid).ToList();
 
             DataOperations operation = new DataOperations();
             if (dm.Where != null && dm.Where.Count > 0) //Filtering
@@ -218,6 +220,8 @@ namespace sms.Controllers
             string msg = value.Value.Quantity + "" + "ወጪ አድርገዋል!!";   //Message from server 
             return Json(new { data = value, message = msg });
         }
+        [Authorize(Roles = "SuperAdmin")]
+
 
         public async Task<IActionResult> EditPartial1([FromBody] CRUDModel<Out> value)
         {
@@ -229,7 +233,7 @@ namespace sms.Controllers
             ViewBag.EmployeeId = _context.Employees.ToList();
             ViewBag.StatusId = _context.Statuses.ToList();
             ViewBag.StockId = _context.StockItems.Where(x => x.User.Id == user.Id).ToList();
-            ViewBag.dataSource = _context.Outs.Where(x => x.ParentId == siteid && x.User.Id == user.Id).ToList();
+            ViewBag.dataSource = _context.Outs.Where(x => x.ParentId == siteid).ToList();
             return PartialView("_DialogEditPartial1", value.Value);
         }
         public ActionResult CellEditUpdate([FromBody] CRUDModel<Out> value)
@@ -255,7 +259,7 @@ namespace sms.Controllers
             return Json(new { data = value, message = msg });
         }
 
-        // [Authorize(Roles = "SuperAdmin")]
+         [Authorize(Roles = "SuperAdmin")]
         public ActionResult CellEditRemove([FromBody] CRUDModel<Out> value)
         {
             //do stuff
